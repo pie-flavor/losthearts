@@ -1,0 +1,5 @@
+<costumes anm2root="gfx/">
+  <costume anm2path="characters/holymantle_green.anm2" type="none"/>
+  <costume anm2path="characters/holymantle_black.anm2" type="none"/>
+  <costume anm2path="characters/holymantle_gold.anm2" type="none"/>
+</costumes>

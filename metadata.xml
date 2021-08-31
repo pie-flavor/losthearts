@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>Lost Hearts</name>
+    <directory>losthearts</directory>
+    <id>2589542827</id>
+    <description>The Lost doesn't have health, but he can't do anything with hearts like the Keeper can. This mod changes that! Now, if you pick up:
+[LIST]
+[*] a black heart - breaking the mantle will give the Necronomicon effect
+[*] a golden heart - breaking the mantle will spawn a few pennies and apply Midas's Touch to enemies close by
+[*] a rotten heart - clearing rooms or breaking the mantle will spawn blue flies
+[*] an eternal heart - breaking the mantle regenerates it instantly
+[/LIST]
+Once broken, the effect goes away until you pick up another heart. Heart effects also override each other - you can only have one at a time. Unless you've picked up Birthright, in which case they stack! The effects will still all go away at once, though.
+
+This mod was inspired by [URL=https://www.youtube.com/c/Hutts2]Hutts[/URL]; he described on stream a hypothetical mod very similar to this one.
+
+If you think soul hearts should do anything, comment with what it should be!</description>
+    <version>1.4</version>
+    <visibility>Public</visibility>
+    <tag id="Lua"/>
+    <tag id="Pickups"/>
+    <tag id="Tweaks"/>
+</metadata>
