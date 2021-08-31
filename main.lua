@@ -84,6 +84,8 @@ end
 
 local apply_mantle = {}
 
+local teleporting_animations = { Appear = 1, TeleportUp = 1, TeleportDown = 1, Trapdoor = 1, MinecartEnter = 1, Jump = 1, LightTravel = 1, DeathTeleport = 1 }
+
 function mod:onPlayerUpdate(player)
   local idx = index(player)
   if apply_mantle[idx] then
@@ -92,37 +94,41 @@ function mod:onPlayerUpdate(player)
   end
   if player:GetPlayerType() == PlayerType.PLAYER_THELOST then
     if player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE) then
-      has_mantle[idx] = true
-    elseif has_mantle[idx] then
-      -- broke the mantle this frame
-      has_mantle[idx] = false
-      fix_costumes = true
-      local state = mantle_states[idx]
-      mantle_states[idx] = HeartType.None
-      if state then
-        if state & HeartType.Black ~= 0 then
-          player:UseActiveItem(CollectibleType.COLLECTIBLE_NECRONOMICON, UseFlag.USE_NOANIM)
-        end
-        if state & HeartType.Gold ~= 0 then
-          local pennies = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_MIDAS_TOUCH):RandomInt(4) + 1
-          for x = 1, pennies do
-            Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_PENNY, player.Position, RandomVector() * (vel_rng:RandomFloat() * 0.5 + 0.5), player)
+      has_mantle[idx] = 2
+    elseif teleporting_animations[player:GetSprite():GetAnimation()] == nil then
+      if has_mantle[idx] == 0 then
+        -- broke the mantle this frame
+        has_mantle[idx] = nil
+        fix_costumes = true
+        local state = mantle_states[idx]
+        mantle_states[idx] = HeartType.None
+        if state then
+          if state & HeartType.Black ~= 0 then
+            player:UseActiveItem(CollectibleType.COLLECTIBLE_NECRONOMICON, UseFlag.USE_NOANIM)
           end
-          for i, entity in ipairs(Isaac.FindInRadius(player.Position, 60, EntityPartition.ENEMY)) do
-            entity:AddMidasFreeze(EntityRef(player), 150)
+          if state & HeartType.Gold ~= 0 then
+            local pennies = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_MIDAS_TOUCH):RandomInt(4) + 1
+            for x = 1, pennies do
+              Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COIN, CoinSubType.COIN_PENNY, player.Position, RandomVector() * (vel_rng:RandomFloat() * 0.5 + 0.5), player)
+            end
+            for i, entity in ipairs(Isaac.FindInRadius(player.Position, 60, EntityPartition.ENEMY)) do
+              entity:AddMidasFreeze(EntityRef(player), 150)
+            end
+          end
+          if state & HeartType.Rotten ~= 0 then
+            local flies = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_GUPPYS_HEAD):RandomInt(3) + 2
+            for x = 1, flies do
+              Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, 0, player.Position, Vector(0, 0), player)
+            end
+          end
+          if state & HeartType.Eternal ~= 0 then
+            -- player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOCOSTUME) -- breaks shit
+            -- player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, false) -- crashes
+            apply_mantle[idx] = true
           end
         end
-        if state & HeartType.Rotten ~= 0 then
-          local flies = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_GUPPYS_HEAD):RandomInt(3) + 2
-          for x = 1, flies do
-            Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, 0, player.Position, Vector(0, 0), player)
-          end
-        end
-        if state & HeartType.Eternal ~= 0 then
-          -- player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER | UseFlag.USE_NOCOSTUME) -- breaks shit
-          -- player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE, false) -- crashes
-          apply_mantle[idx] = true
-        end
+      elseif has_mantle[idx] then
+        has_mantle[idx] = has_mantle[idx] - 1
       end
     end
   end
