@@ -3,19 +3,26 @@
     <name>Lost Hearts</name>
     <directory>losthearts</directory>
     <id>2589542827</id>
-    <description>The Lost doesn't have health, but he can't do anything with hearts like the Keeper can. This mod changes that! Now, if you pick up:
+    <description>The Lost doesn't have health, but he can't do anything with hearts like the Keeper can. This mod changes that! Now, if you pick up (while not holding Ctrl/ZR):
 [LIST]
 [*] a black heart - breaking the mantle will give the Necronomicon effect
 [*] a golden heart - breaking the mantle will spawn a few pennies and apply Midas's Touch to enemies close by
 [*] a rotten heart - clearing rooms or breaking the mantle will spawn blue flies
 [*] an eternal heart - breaking the mantle regenerates it instantly
+[*] a bone heart - breaking the mantle spawns four bone spur orbitals from the Book of the Dead
 [/LIST]
 Once broken, the effect goes away until you pick up another heart. Heart effects also override each other - you can only have one at a time. Unless you've picked up Birthright, in which case they stack! The effects will still all go away at once, though.
 
-This mod was inspired by [URL=https://www.youtube.com/c/Hutts2]Hutts[/URL]; he described on stream a hypothetical mod very similar to this one.
+Additionally, for each soul heart you pick up, the broken mantle will have one more second of invincibility, up to a maximum of four (if you had more than four, they'll roll over to the next break).
 
-If you think soul hearts should do anything, comment with what it should be!</description>
-    <version>1.4</version>
+You can enable this functionality for Tainted Lost, or even just anyone who has the Holy Mantle, as well as tweak a couple of other things, through [URL=https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818]Mod Config Menu[/URL]. Characters other than the Lost / T.Lost need to be holding Ctrl/ZR to add soul hearts to their mantle, rather than just pick up the heart.
+
+This mod was inspired by [URL=https://www.youtube.com/c/Hutts2]Hutts[/URL]; he described on stream a hypothetical mod very similar to this one (itself inspired by stream viewer Nevernamed).
+
+Developer Note: If you want to integrate this with your own Lost-related mod, there is an API, documented in the API.md file.
+
+Upcoming: [URL=https://steamcommunity.com/sharedfiles/filedetails/?id=2497320263]Visible Lost Health[/URL] support!</description>
+    <version>1.11</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Pickups"/>
