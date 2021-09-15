@@ -272,7 +272,7 @@ function mod:onPlayerUpdate(player)
       local door
       if block then door = block:ToDoor(); end
       if block == nil 
-        or not (block:GetType() ~= GridEntityType.GRID_TRAPDOOR or
+        or not (block:GetType() == GridEntityType.GRID_TRAPDOOR or
           (door and (door.TargetRoomType == RoomType.ROOM_CURSE or door.CurrentRoomType == RoomType.ROOM_CURSE) and room:IsClear()))
       then
         if has_mantle[idx] == 0 then
