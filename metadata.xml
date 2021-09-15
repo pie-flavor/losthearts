@@ -22,7 +22,7 @@ This mod was inspired by [URL=https://www.youtube.com/c/Hutts2]Hutts[/URL]; he d
 Developer Note: If you want to integrate this with your own Lost-related mod, there is an API, documented in the API.md file.
 
 Upcoming: [URL=https://steamcommunity.com/sharedfiles/filedetails/?id=2497320263]Visible Lost Health[/URL] support!</description>
-    <version>1.11</version>
+    <version>1.12</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Pickups"/>

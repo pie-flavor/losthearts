@@ -269,10 +269,8 @@ function mod:onPlayerUpdate(player)
       -- todo extend this to handle the curse room door
       local room = Game():GetLevel():GetCurrentRoom()
       local block = room:GetGridEntityFromPos(player.Position)
-      local door = block:ToDoor()
-      if not (door and (door.TargetRoomType == RoomType.ROOM_CURSE or door.CurrentRoomType == RoomType.ROOM_CURSE) and room:IsClear()) then
-        Isaac.ConsoleOutput("BUSTED")
-      end
+      local door
+      if block then door = block:ToDoor(); end
       if block == nil 
         or not (block:GetType() ~= GridEntityType.GRID_TRAPDOOR or
           (door and (door.TargetRoomType == RoomType.ROOM_CURSE or door.CurrentRoomType == RoomType.ROOM_CURSE) and room:IsClear()))
